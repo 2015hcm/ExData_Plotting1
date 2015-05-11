@@ -3,6 +3,10 @@ plot3<-function()
 {
 windows()
 subtemp<-read.table("sub_household_power_comsuption.txt",sep=",",header=T) #always re-read it so each segment can be run independently
+mydf<-data.frame(subtemp)
+gap<-(mydf$Global_active_power)
+ngap<-as.numeric(as.character(gap))
+ngap<-na.omit(ngap)
 a<-paste(subtemp$Date,subtemp$Time)
 b<-paste(as.Date(a,"%d/%m/%Y"),subtemp$Time)
 wd<-weekdays(as.Date(mydf$Date))#not used

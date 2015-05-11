@@ -3,7 +3,12 @@
 plot4<-function()
 {
 windows()
+
 subtemp<-read.table("sub_household_power_comsuption.txt",sep=",",header=T) #always re-read it so each segment can be run independently
+mydf<-data.frame(subtemp)
+gap<-(mydf$Global_active_power)
+ngap<-as.numeric(as.character(gap))
+ngap<-na.omit(ngap)
 a<-paste(subtemp$Date,subtemp$Time)
 b<-paste(as.Date(a,"%d/%m/%Y"),subtemp$Time)
 wd<-weekdays(as.Date(mydf$Date))#not used
@@ -17,6 +22,7 @@ myplot3<-function()
 }
 myplot2a<-function(){ with(mydf, plot(br,as.character(Voltage),col="black",type="l",ylab="Voltage",xlab="Datetime"))}
 myplot3a<-function(){with(mydf, plot(br,as.character(Global_reactive_power),col="black",type="l",ylab="Global_reactive_power",xlab="Datetime"))}
+
 
 myall<-function(){par(mfrow=c(2,2))
                   par(mai=c(0.5,0.5,0.25,0.5))
